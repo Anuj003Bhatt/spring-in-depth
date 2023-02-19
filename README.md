@@ -40,14 +40,28 @@ This repo focuses on learning spring framework in depth.
   - **BeanFactory** initialization phase.
   - **Bean** initialization and instantiation.
 
-In a nutshell, the phase goes like this,</br>
-- First the bean definitions are loaded in and post loading processors are called.
+In a nutshell, the phase goes like this:
+- First the bean definitions are loaded in and post loading processors are called. These happen at the BeanFactory level.
 - Now,for each bean,
-  - Instantiate bean
-  - Call setters
-  - Bean post-processor (pre-init)
-  - initializer
-  - post-initializer (post-init)
+    - Instantiate bean
+    - Call setters
+    - Bean post-processor (pre-init)
+    - initializer
+    - post-initializer (post-init)
+
+At the end of this phase, there are only references inside bean factory
+but no objects have yet been creted.
+
+#### BeanFactoryPostProcessor
+This is the first extension point that we can use. Sample use cases include
+loading property sources. Doc: [BeanFactoryPostProcessor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/BeanFactoryPostProcessor.html)
+
+This impacts at the level of Bean Factory instantiation.
+
+#### Types of initializations
+- Java Configuration
+- XML
+- Component Scanning and autoconfiguration
 
 
 ### Lifecycle Methods
