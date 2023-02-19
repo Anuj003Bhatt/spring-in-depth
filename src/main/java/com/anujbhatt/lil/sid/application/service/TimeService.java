@@ -1,15 +1,19 @@
 package com.anujbhatt.lil.sid.application.service;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Service
 public class TimeService {
     private static final DateTimeFormatter FORMATTER_24 = DateTimeFormatter.ofPattern("HH:mm:ss");
     private static final DateTimeFormatter FORMATTER_12 = DateTimeFormatter.ofPattern("hh:mm:ss a");
+    @Value("#{new Boolean(environment['spring.profiles.active']!='dev')}")
+    private boolean is24;
 
-    private final boolean is24;
-
-    public TimeService(boolean is24){
+    public TimeService(){
         this.is24 = is24;
     }
 
